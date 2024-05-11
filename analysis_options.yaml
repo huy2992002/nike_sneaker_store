@@ -1,0 +1,28 @@
+include: package:very_good_analysis/analysis_options.yaml
+linter:
+  rules:
+    public_member_api_docs: false
+    avoid_print: false
+    lines_longer_than_80_chars: false
+    use_string_buffers: false
+    unnecessary_getters_setters: false
+    omit_local_variable_types: false
+    prefer_final_locals: false
+    prefer_final_in_for_each: false
+    always_use_package_imports: false
+    depend_on_referenced_packages: false
+    use_super_parameters: false
+    noop_primitive_operations: false
+    require_trailing_commas: false
+    unawaited_futures: false
+    use_build_context_synchronously: false
+    prefer_final_fields: false
+    avoid_dynamic_calls: false
+    no_leading_underscores_for_local_identifiers: false
+analyzer:
+  errors:
+    inference_failure_on_function_return_type: false
+    inference_failure_on_function_invocation: false
+    deprecated_member_use: false
+    inference_failure_on_instance_creation: false
+    must_be_immutable: false
