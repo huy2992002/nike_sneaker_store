@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nike_sneaker_store/constants/ns_constants.dart';
 import 'package:nike_sneaker_store/features/auth/sign_up/bloc/sign_up_event.dart';
@@ -101,6 +102,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       );
       emit(state.copyWith(status: FormSubmissionStatus.success));
     } on AuthException catch (e) {
+      emit(state.copyWith(
+        status: FormSubmissionStatus.failure,
+        message: e.getFailure().message,
+      ));
+    } on DioException catch (e) {
       emit(state.copyWith(
         status: FormSubmissionStatus.failure,
         message: e.getFailure().message,
