@@ -78,6 +78,7 @@ class MyApp extends StatelessWidget {
             create: (context) => AuthRepository(
               supabaseServices: context.read<SupabaseServices>(),
               sharedPrefServices: context.read<SharedPrefServices>(),
+              apiClient: context.read<ApiClient>(),
             ),
           ),
           RepositoryProvider<ProductRepository>(
