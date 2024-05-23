@@ -12,8 +12,8 @@ class MockProductRepository extends Fake implements ProductRepository {
   }
 
   @override
-  Future<List<String>?> getIdProductFavorites(String userId) async {
-    if (userId.isNotEmpty) {
+  Future<List<String>?> getIdProductFavorites(String? userId) async {
+    if (userId == null || userId.isNotEmpty) {
       return [MockData.mockProduct.uuid ?? ''];
     } else {
       throw Exception('An error occurred, please check UserId');
@@ -21,8 +21,8 @@ class MockProductRepository extends Fake implements ProductRepository {
   }
 
   @override
-  Future<List<ProductModel>?> getIdProductCart(String userId) async {
-    if (userId.isNotEmpty) {
+  Future<List<ProductModel>?> getIdProductCart(String? userId) async {
+    if (userId == null || userId.isNotEmpty) {
       return MockData.mockProducts;
     } else {
       throw Exception('An error occurred, please check UserId');
@@ -39,8 +39,8 @@ class MockProductRepository extends Fake implements ProductRepository {
   }
 
   @override
-  Future<List<NotificationModel>?> fetchNotifications(String userId) async {
-    if (userId.isNotEmpty) {
+  Future<List<NotificationModel>?> fetchNotifications(String? userId) async {
+    if (userId == null || userId.isNotEmpty) {
       return MockData.mockNotifications;
     } else {
       throw Exception('An error occurred, please check UserId');
