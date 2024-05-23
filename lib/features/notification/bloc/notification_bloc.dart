@@ -1,6 +1,6 @@
 // ignore_for_file: cascade_invocations, avoid_function_literals_in_foreach_calls
 
-import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nike_sneaker_store/features/notification/bloc/notification_event.dart';
 import 'package:nike_sneaker_store/features/notification/bloc/notification_state.dart';
@@ -30,7 +30,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
         status: NotificationViewStatus.success,
         notifications: notifications,
       ));
-    } on SocketException catch (e) {
+    } on DioException catch (e) {
       emit(state.copyWith(
         status: NotificationViewStatus.failure,
         message: e.getFailure().message,
@@ -61,7 +61,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
         notifications: notifications,
         itemStatus: ListNotificationStatus.readSuccess,
       ));
-    } on SocketException catch (e) {
+    } on DioException catch (e) {
       emit(state.copyWith(
         itemStatus: ListNotificationStatus.readFailure,
         message: e.getFailure().message,
@@ -87,7 +87,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
         itemStatus: ListNotificationStatus.removeSuccess,
         notifications: [],
       ));
-    } on SocketException catch (e) {
+    } on DioException catch (e) {
       emit(state.copyWith(
         itemStatus: ListNotificationStatus.removeFailure,
         message: e.getFailure().message,
