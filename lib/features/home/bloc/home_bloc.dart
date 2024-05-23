@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls, cascade_invocations
 
-import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nike_sneaker_store/features/home/bloc/home_event.dart';
 import 'package:nike_sneaker_store/features/home/bloc/home_state.dart';
@@ -47,7 +47,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         homeStatus: HomeViewStatus.success,
         loadStatus: HomeLoadMoreStatus.loadInitial,
       ));
-    } on SocketException catch (e) {
+    } on DioException catch (e) {
       emit(state.copyWith(
         categoryIndex: 0,
         homeStatus: HomeViewStatus.failure,
@@ -92,7 +92,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       if (products.length == oldItem || products.length > 20) {
         emit(state.copyWith(loadStatus: HomeLoadMoreStatus.loadCompeted));
       }
-    } on SocketException catch (e) {
+    } on DioException catch (e) {
       emit(state.copyWith(
         loadStatus: HomeLoadMoreStatus.loadFailure,
         errorMessage: e.getFailure().message,
@@ -150,7 +150,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         favoriteStatus: HomeFavoriteStatus.favoriteSuccess,
         productDisplays: products,
       ));
-    } on SocketException catch (e) {
+    } on DioException catch (e) {
       emit(state.copyWith(
         favoriteStatus: HomeFavoriteStatus.favoriteFailure,
         errorMessage: e.getFailure().message,
