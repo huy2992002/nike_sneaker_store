@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls, cascade_invocations
-
-import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nike_sneaker_store/features/cart/bloc/cart_event.dart';
 import 'package:nike_sneaker_store/features/cart/bloc/cart_state.dart';
@@ -34,7 +33,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         viewStatus: CartViewStatus.success,
         myCarts: myCarts,
       ));
-    } on SocketException catch (e) {
+    } on DioException catch (e) {
       emit(state.copyWith(
         viewStatus: CartViewStatus.failure,
         message: e.getFailure().message,
@@ -86,7 +85,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           ),
         );
       }
-    } on SocketException catch (e) {
+    } on DioException catch (e) {
       emit(state.copyWith(
         cartInsertStatus: CartQuantityStatus.insertFailure,
         message: e.getFailure().message,
@@ -121,7 +120,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         cartInsertStatus: CartQuantityStatus.incrementSuccess,
         myCarts: products,
       ));
-    } on SocketException catch (e) {
+    } on DioException catch (e) {
       emit(state.copyWith(
         cartInsertStatus: CartQuantityStatus.incrementFailure,
         message: e.getFailure().message,
@@ -162,7 +161,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         cartInsertStatus: CartQuantityStatus.decrementSuccess,
         myCarts: products,
       ));
-    } on SocketException catch (e) {
+    } on DioException catch (e) {
       emit(state.copyWith(
         cartInsertStatus: CartQuantityStatus.decrementFailure,
         message: e.getFailure().message,
@@ -188,7 +187,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         myCarts: [],
         cartCheckoutStatus: CartEventCheckOutStatus.checkoutSuccess,
       ));
-    } on SocketException catch (e) {
+    } on DioException catch (e) {
       emit(state.copyWith(
         cartCheckoutStatus: CartEventCheckOutStatus.checkoutFailure,
         message: e.getFailure().message,
@@ -216,7 +215,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         myCarts: myCarts,
         cartInsertStatus: CartQuantityStatus.removeSuccess,
       ));
-    } on SocketException catch (e) {
+    } on DioException catch (e) {
       emit(state.copyWith(
         cartInsertStatus: CartQuantityStatus.removeFailure,
         message: e.getFailure().message,
