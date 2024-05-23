@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -128,11 +129,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         buttonStatus: ProfileSaveStatus.success,
       ));
     } on DioException catch (e) {
-      emit(state.copyWith(
-        buttonStatus: ProfileSaveStatus.failure,
-        message: e.getFailure().message,
-      ));
-    } on SocketException catch (e) {
       emit(state.copyWith(
         buttonStatus: ProfileSaveStatus.failure,
         message: e.getFailure().message,
