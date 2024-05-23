@@ -92,7 +92,6 @@ class MyApp extends StatelessWidget {
           ),
           RepositoryProvider<UserRepository>(
             create: (context) => UserRepository(
-              supabaseServices: context.read<SupabaseServices>(),
               apiClient: context.read<ApiClient>(),
             ),
           ),
